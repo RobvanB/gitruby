@@ -63,63 +63,52 @@ class Git_Ruby
       refs = @client.refs(user_repo, "heads/master")
 
       if refs
-        puts "got refs"
         ref_object_sha = refs.object.sha
-        #puts "1 #{refs.inspect}"
-        #puts "2 #{refs.methods(true)}"
-        #puts "3 #{refs.rels.methods}"
-        #puts "4 #{refs.ref}"
-        #puts "5 #{refs.ref.class}"
-        #puts "6 #{refs.rels.class}"
-        #puts "7 #{refs.rels.keys.methods}"
-        #puts refs.process_value ":type"
-        #puts refs.object.type
-        #puts refs.object.sha
-        #puts refs.object.methods(true)
 
         # 1b: Get the commit object
-        commit_obj = @client.commit(user_repo, ref_object_sha)
-        #puts commit_obj.files
-        commit_obj.files.each{|f|
-          if f.filename == xpo_filename
+        #puts "object sha: #{ref_object_sha}"
+        commit_obj = @client.commits(user_repo, ref_object_sha)
+
+        # 1c Get the tree sha from the commit object to get to the tree object
+        #puts "commits: #{commit_obj.class}"
+        #commit_obj.each{|c| puts "C: #{c.commit.tree}"}
+
+        # The first one in the array should be our last commit
+        tree_sha = commit_obj[0].commit.tree.sha
+        #puts "tree_sha: #{tree_sha}"
+
+        # Make sure we have the file
+        # TODO: at this point we assume that we only have 1 xpo in the repo - this need to be reviewed/expanded
+        tree_obj = @client.tree(user_repo, tree_sha)
+        puts tree_obj.inspect
+        tree_obj.tree.each{|t|
+          if t.path == xpo_filename
             @file_in_repo = true
-            @update_file_sha = f.sha
+            #puts t.sha
+            @update_file_sha = t.sha
+            puts "file found"
           else
             @file_in_repo = false
             puts "#{xpo_filename} not found in repo #{repo_name}"
           end
-          }
-        if @file_in_repo
-          content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content 1", @update_file_sha, :file => xpo_filename_plus_path)
+        }
+
+        if @file_in_repo == true
+          puts "updating...."
+          content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content 2", @update_file_sha, :file => xpo_filename_plus_path)
         end
       end
     else
-      content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content 1", :file => xpo_filename_plus_path)
+      # Add new file
+      content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content 2", :file => xpo_filename_plus_path)
     end
+    puts content_and_commit
 
-
-    # Get all the commits and select the last one so we can get the tree
-    #commits = @client.commits(@repo)
-
-    #commits.each{|c| puts c.name}
     sleep 2 #leave some time between the GIT API requests
 
     #Testing
     #self.delete_repo({:username => username, :repo => reponame })
 end
-=begin
-    # We now have a repo - Now we need to create / update the local git, and then push the code
-
-    if @repo
-      Dir.chdir(@local_git)
-      if !Dir.chdir(@repo.name)
-        Dir.mkdir(@repo.name)
-        Dir.chdir(@repo.name)
-      end
-    end
-=end
-
-
 
   def delete_repo(repo)
     if (@@client.delete_repository(repo))
