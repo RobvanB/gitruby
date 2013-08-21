@@ -5,11 +5,16 @@ class Git_Ruby
     @xpodir    = '/xpotmp'
     @username  = 'RobvanB'
     @password  =  ''
-    @local_git = '/tmp/gittmp'
     @cred      = { :login => @username, :password => @password }
   end
 
   def listFiles
+    # Pull the emails with the XPO attachments, extract the attachments and move them to our input folder
+    if !system('./getEmailAttach.sh')
+      puts "Problem pulling in email"
+      exit
+    end
+
     Dir.chdir(@xpodir)
     if Dir.pwd == @xpodir
       xpolist = Dir.glob("*.xpo")
@@ -47,8 +52,9 @@ class Git_Ruby
     end
 
     @repo = @client.repository(user_repo)
+    puts "Repo: #{@repo}"
 
-    sleep 1 #leave some time between the GIT API requests    (not sure if required)
+    sleep 2 #leave some time between the GIT API requests    (not sure if required)
 
     # Use the API to add the new file and commit to the GitHb DB. This way we don't need a local git
     # See: http://developer.github.com/v3/git/
@@ -89,18 +95,21 @@ class Git_Ruby
             puts "file found"
           else
             @file_in_repo = false
-            puts "#{xpo_filename} not found in repo #{repo_name}"
+            puts "#{xpo_filename} not found in repo #{repo_name}, adding..."
+            puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
+            content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content", xpo_filename_plus_path )
           end
         }
 
         if @file_in_repo == true
           puts "updating...."
-          content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content 2", @update_file_sha, :file => xpo_filename_plus_path)
+          content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content", @update_file_sha, xpo_filename_plus_path)
         end
       end
     else
-      # Add new file
-      content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content 2", :file => xpo_filename_plus_path)
+      # Add new file( repo, path (in repo), message, content)
+      puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
+      content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content", xpo_filename_plus_path)
     end
     puts content_and_commit
 
