@@ -4,7 +4,7 @@ class Git_Ruby
   def initialize
     @xpodir    = '/xpotmp'
     @username  = 'RobvanB'
-    @password  =  'DRiZdIIDr23G'
+    @password  =  ''
     @cred      = { :login => @username, :password => @password }
     @main_repo = "AKARepo" #Single repo, subdir per customer
   end
