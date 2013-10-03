@@ -5,7 +5,7 @@ class Git_Ruby_Run
   def self.run
     gr = Git_Ruby.new
 
-    gr.listFiles
+    gr.run
   end
 
   run

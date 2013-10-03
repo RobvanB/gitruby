@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cf59a8b-0634-49c8-9036-ee3d7e52d910" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/getEmailAttach.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitruby.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/getEmailAttach.sh" afterPath="$PROJECT_DIR$/getEmailAttach.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/git_ruby.rb" afterPath="$PROJECT_DIR$/git_ruby.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/git_ruby_run.rb" afterPath="$PROJECT_DIR$/git_ruby_run.rb" />
     </list>
     <ignored path="gitruby.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="gitruby.xml" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +29,7 @@
       <file leaf-file-name="git_ruby.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/git_ruby.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="19" selection-start="126" selection-end="126" vertical-scroll-proportion="0.22332506">
+            <state line="89" column="66" selection-start="2732" selection-end="2732" vertical-scroll-proportion="0.80833334">
               <folding />
             </state>
           </provider>
@@ -36,7 +38,7 @@
       <file leaf-file-name="git_ruby_run.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git_ruby_run.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="55" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
+            <state line="11" column="32" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -61,9 +63,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/git_ruby_test.rb" />
-        <option value="$PROJECT_DIR$/git_ruby_run.rb" />
         <option value="$USER_HOME$/.gem/ruby/1.9.1/gems/faraday-0.9.0.rc5/lib/faraday/connection.rb" />
         <option value="$PROJECT_DIR$/getEmailAttach.sh" />
+        <option value="$PROJECT_DIR$/git_ruby_run.rb" />
+        <option value="$PROJECT_DIR$/gitruby.xml" />
         <option value="$PROJECT_DIR$/git_ruby.rb" />
       </list>
     </option>
@@ -116,6 +119,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -136,17 +140,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="Errors" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gitruby.xml" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Ruby.git_ruby_run">
     <configuration default="false" name="Git_Ruby_Test" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
@@ -343,23 +346,31 @@
       <created>1376834179792</created>
       <updated>1376834179792</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Bug fix when adding first commit.">
+      <created>1377126843052</created>
+      <updated>1377126843052</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Started adding functionality where it reads the customer name from file and creates a subdir per customer.">
+      <created>1380676602352</created>
+      <updated>1380676602352</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="48" y="-4" width="1313" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14353688" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15067407" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3271028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271028" sideWeight="0.998414" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -405,7 +416,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working prototype - updates existing files, adds when new." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started adding functionality where it reads the customer name from file and creates a subdir per customer." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -422,18 +433,13 @@
     <MESSAGE value="Lists xpo files, and per file, checks if repo exists, if not, creates it" />
     <MESSAGE value="Working on adding updates to existing file in repo" />
     <MESSAGE value="Working prototype - updates existing files, adds when new." />
+    <MESSAGE value="Bug fix when adding first commit." />
+    <MESSAGE value="Started adding functionality where it reads the customer name from file and creates a subdir per customer." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.gem/ruby/1.9.1/gems/octokit-2.0.0.rc2/lib/octokit/client/contents.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="0" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git_ruby_run.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="55" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
@@ -499,30 +505,35 @@
         <state line="30" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.59057075" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/git_ruby_run.rb">
+    <entry file="file://$USER_HOME$/.gem/ruby/1.9.1/gems/octokit-2.0.0.rc2/lib/octokit/client/contents.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="55" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="78" column="0" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.3325062" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/getEmailAttach.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="32" selection-start="589" selection-end="589" vertical-scroll-proportion="0.8560794">
+        <state line="14" column="104" selection-start="433" selection-end="433" vertical-scroll-proportion="0.3425775">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.gem/ruby/1.9.1/gems/octokit-2.0.0.rc2/lib/octokit/client/contents.rb">
+    <entry file="file://$PROJECT_DIR$/gitruby.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="0" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.3325062">
+        <state line="1" column="13" selection-start="23" selection-end="23" vertical-scroll-proportion="0.037220843">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git_ruby_run.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="32" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/git_ruby.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="19" selection-start="126" selection-end="126" vertical-scroll-proportion="0.22332506">
+        <state line="89" column="66" selection-start="2732" selection-end="2732" vertical-scroll-proportion="0.80833334">
           <folding />
         </state>
       </provider>

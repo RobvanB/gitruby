@@ -24,3 +24,14 @@ do
  mv ${email_dir}/* ${output_dir}
 done
 
+# If an attached filename has "(1)" in it (which happens with XPOs), 
+# it will be renamed like this by munpack:
+# SharedProject_aka_VCS(1).desc -> SharedProject_aka_VCSXX1X.desc
+# We need to get rid of that:
+cd ${output_dir}
+
+for f in `ls`
+do
+  new_name=`ls ${f} | awk -F'XX.+X' '{print $1$2}' `
+  mv ${f} ${new_name}
+done

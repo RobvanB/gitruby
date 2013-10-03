@@ -1,15 +1,26 @@
 class Git_Ruby
   require 'octokit'
+  require 'nokogiri'
 
   def initialize
-    @xpodir    = '/xpotmp'
-    @username  = 'RobvanB'
-    @password  =  'DRiZdIIDr23G'
+    # Open the config file with the account info
+    cfg = File.open("gitruby.xml")
+    doc = Nokogiri::XML(cfg)
+    cfg.close
+
+    # Assign values from configvfile
+    doc.xpath("//account").each { |acc|
+      #puts acc.to_s
+      @username  = acc.xpath("un")[0].content
+      @password  = acc.xpath("pw")[0].content
+      @xpodir    = acc.xpath("xpodir")[0].content
+      @main_repo = acc.xpath("main_repo")[0].content #Single repo, subdir per customer
+    }
+
     @cred      = { :login => @username, :password => @password }
-    @main_repo = "AKARepo" #Single repo, subdir per customer
   end
 
-  def listFiles
+  def run
     # Pull the emails with the XPO attachments, extract the attachments and move them to our input folder
     #if !system('./getEmailAttach.sh')
     #  puts "Problem pulling in email"
@@ -69,10 +80,14 @@ class Git_Ruby
     end
 
     @repo = @client.repository(user_repo)
-    puts "Repo: #{@repo}"
+    #puts "Repo: #{@repo}"
 
     sleep 2 #leave some time between the GIT API requests    (not sure if required)
 
+    self.add_content(user_repo, xpo_filename, xpo_filename_plus_path)
+  end
+
+  def add_content(user_repo, xpo_filename, xpo_filename_plus_path)
     puts "Customer : #{@customer}"
 
     # Use the API to add the new file and commit to the GitHb DB. This way we don't need a local git
@@ -80,7 +95,7 @@ class Git_Ruby
 
     #Add the content to the repo
     if @repo_exists
-      # See if the current file is in the repo - Assumption is that there are no subfolders
+      # See if the current file is in the repo
       # See here: http://stackoverflow.com/questions/15919635/on-github-api-what-is-the-best-way-to-get-the-last-commit-message-associated-w
 
       # 1. First get a list of files
@@ -121,46 +136,16 @@ class Git_Ruby
             content_and_commit = @client.create_contents(user_repo, cur_file, "Adding content", xpo_filename_plus_path )
           end
 
-
-          #if t.path == xpo_filename
-          #  @file_in_repo = true
-          #  #puts t.sha
-          #  @update_file_sha = t.sha
-          #  puts "file found"
-          #else
-          #  @file_in_repo = false
-          #  puts "#{xpo_filename} not found in repo #{@main_repo}, adding..."
-          #  puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
-          #  content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content", xpo_filename_plus_path )
-          #end
-        }
-
-        ####
-        exit
-        ####
-
-        if @file_in_repo == true
-          puts "updating...."
-          content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content", @update_file_sha, xpo_filename_plus_path)
-        end
+          if @file_in_repo == true
+            puts "updating...."
+            content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content", @update_file_sha, xpo_filename_plus_path)
+          end
+        } #tree_ob.each loop
       end
     else
-      # Add new file( repo, path (in repo), message, content)
-      puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
-      content_and_commit = @client.create_contents(user_repo, xpo_filename, "Adding content", xpo_filename_plus_path)
-    end
-    puts content_and_commit
-
-    sleep 2 #leave some time between the GIT API requests
-
-    #Testing
-    #self.delete_repo({:username => username, :repo => reponame })
-end
-
-  def delete_repo(repo)
-    if (@@client.delete_repository(repo))
-      puts "#{repo} deleted."
+      #No Repo
+      puts "No Repo, exiting."
+      exit
     end
   end
-
 end
