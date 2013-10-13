@@ -22,11 +22,10 @@ class Git_Ruby
 
   def run
     # Pull the emails with the XPO attachments, extract the attachments and move them to our input folder
-    #if !system('./getEmailAttach.sh')
-    #  puts "Problem pulling in email"
-    # exit
-    #end
-    #TODO: Re-enable
+    if !system('./getEmailAttach.sh')
+      puts "Problem pulling in email"
+     exit
+    end
     Dir.chdir(@xpodir)
     if Dir.pwd == @xpodir
       xpolist = Dir.glob("*.xpo")
@@ -55,7 +54,6 @@ class Git_Ruby
   end
 
   def find_or_create_repo(xpo_filename)
-    #repo_name = self.parseFilename(xpo_filename)
     ret_array = self.parseFilename(xpo_filename)
     customer = ret_array[0]
     commit_msg = ret_array[1]
@@ -63,20 +61,16 @@ class Git_Ruby
     # TODO: use Oauth
 
     xpo_filename_plus_path = @xpodir + "/" + xpo_filename
-    #user_repo = { :username => @cred[:login], :repo => repo_name}
     user_repo = { :username => @cred[:login], :repo => @main_repo}
 
     begin
       # Check if we have a repo - if not, create it
       if !@client.repository?(user_repo)
-        #puts "No Repo #{repo_name}, creating new repo"
         puts "No Repo #{@main_repo}, creating new repo"
-        #@client.create_repository(repo_name , :auto_init => true)
         @client.create_repository(@main_repo , :auto_init => true)
         @repo_exists = true
         sleep 3
       else
-        #puts "repo #{repo_name} exists."
         puts "repo #{@main_repo} exists."
         @repo_exists = true
       end
@@ -86,7 +80,6 @@ class Git_Ruby
     end
 
     @repo = @client.repository(user_repo)
-    #puts "Repo: #{@repo}"
 
     sleep 2 #leave some time between the GIT API requests    (not sure if required)
 
@@ -110,30 +103,21 @@ class Git_Ruby
 
       if refs
         ref_object_sha = refs.object.sha
-
         # 1b: Get the commit object
-        #puts "object sha: #{ref_object_sha}"
         commit_obj = @client.commits(user_repo, ref_object_sha)
 
         # 1c Get the tree sha from the commit object to get to the tree object
-        #puts "commits: #{commit_obj.class}"
-        #commit_obj.each{|c| puts "C: #{c.commit.tree}"}
-
         # The first one in the array should be our last commit
         tree_sha = commit_obj[0].commit.tree.sha
-        #puts "tree_sha: #{tree_sha}"
 
         # See if we have a node for the customer
         tree_obj = @client.tree(user_repo, tree_sha)
         cur_file = customer + "/" + xpo_filename
-
-        #puts tree_obj.inspect
         @have_cust = false
         tree_obj.tree.each{|t|
           puts "File: #{t.path}"
           if t.path == customer
             @have_cust = true
-            #puts t.sha
             @customer_node_sha = t.sha
             puts "Customer #{customer} found"
             break
@@ -141,8 +125,7 @@ class Git_Ruby
         } #tree_ob.each loop
 
         if @have_cust
-          puts "Check under #{customer}"
-          # See if we have the file
+          puts "Check if we have the file for #{customer}"
           tree_obj = @client.tree(user_repo, @customer_node_sha)
           @have_file = false
           tree_obj.tree.each{|t|
@@ -158,12 +141,9 @@ class Git_Ruby
 
       if @have_file == true
         puts "updating...."
-        puts "user_repo: #{user_repo} cur_file: #{cur_file} commit_msg: #{commit_msg} sha: #{@update_file_sha} file: #{xpo_filename_plus_path}"
         content_and_commit = @client.update_contents(user_repo, cur_file, commit_msg, @update_file_sha, :file => xpo_filename_plus_path)
       else
         puts "#{cur_file} not found in repo #{@main_repo}, adding..."
-        #puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
-        puts "Cur_file: #{cur_file}  xpo:  #{xpo_filename} xpo+p; #{xpo_filename_plus_path}"
         content_and_commit = @client.create_contents(user_repo, cur_file, commit_msg,  :file => xpo_filename_plus_path)
       end
     else
