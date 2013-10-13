@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2cf59a8b-0634-49c8-9036-ee3d7e52d910" name="Default" comment="">
+    <list default="true" id="2cf59a8b-0634-49c8-9036-ee3d7e52d910" name="Default" comment="Added config file so password and ID are not in the code. (File excluded from repo). Reformatted the code, currently it's not finding the files in the repo">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gitruby.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/getEmailAttach.sh" afterPath="$PROJECT_DIR$/getEmailAttach.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/git_ruby.rb" afterPath="$PROJECT_DIR$/git_ruby.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/git_ruby_run.rb" afterPath="$PROJECT_DIR$/git_ruby_run.rb" />
     </list>
     <ignored path="gitruby.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +27,16 @@
       <file leaf-file-name="git_ruby.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/git_ruby.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="66" selection-start="2732" selection-end="2732" vertical-scroll-proportion="0.80833334">
+            <state line="154" column="66" selection-start="5046" selection-end="5046" vertical-scroll-proportion="0.52166665">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getEmailAttach.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/getEmailAttach.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="88" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/gitruby.xml" />
     <property name="options.searchVisible" value="true" />
@@ -354,19 +361,23 @@
       <created>1380676602352</created>
       <updated>1380676602352</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added config file so password and ID are not in the code. (File excluded from repo). Reformatted the code, currently it's not finding the files in the repo">
+      <created>1380763069989</created>
+      <updated>1380763069989</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="48" y="-4" width="1313" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15067407" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15067407" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -416,7 +427,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started adding functionality where it reads the customer name from file and creates a subdir per customer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added config file so password and ID are not in the code. (File excluded from repo). Reformatted the code, currently it's not finding the files in the repo" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -435,6 +446,7 @@
     <MESSAGE value="Working prototype - updates existing files, adds when new." />
     <MESSAGE value="Bug fix when adding first commit." />
     <MESSAGE value="Started adding functionality where it reads the customer name from file and creates a subdir per customer." />
+    <MESSAGE value="Added config file so password and ID are not in the code. (File excluded from repo). Reformatted the code, currently it's not finding the files in the repo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -510,13 +522,6 @@
         <state line="78" column="0" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.3325062" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getEmailAttach.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="104" selection-start="433" selection-end="433" vertical-scroll-proportion="0.3425775">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gitruby.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="13" selection-start="23" selection-end="23" vertical-scroll-proportion="0.037220843">
@@ -531,9 +536,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/getEmailAttach.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="88" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/git_ruby.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="66" selection-start="2732" selection-end="2732" vertical-scroll-proportion="0.80833334">
+        <state line="154" column="66" selection-start="5046" selection-end="5046" vertical-scroll-proportion="0.52166665">
           <folding />
         </state>
       </provider>

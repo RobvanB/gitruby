@@ -36,23 +36,29 @@ class Git_Ruby
   end
 
   def parseFilename(filename)
-    filename = filename.gsub('.xpo', "") #Remove .xpo
+    filename   = filename.gsub('.xpo', "") #Remove .xpo
+    commit_msg = ""
 
     #Grab the customer name from the commit msg (2nd line - for now, XML later ?)
     line_counter = 1
     file = File.new(filename + ".commit", "r")
     while (line = file.gets)
       if line_counter == 2
-        @customer = line.chomp  #Chomp removes new line character
+        customer = line.chomp  #Chomp removes new line character
+      elsif line_counter > 2 && line.length > 0
+        commit_msg = commit_msg + line
       end
       line_counter = line_counter + 1
     end
     file.close
+    return [customer, commit_msg]
   end
 
   def find_or_create_repo(xpo_filename)
     #repo_name = self.parseFilename(xpo_filename)
-    self.parseFilename(xpo_filename)
+    ret_array = self.parseFilename(xpo_filename)
+    customer = ret_array[0]
+    commit_msg = ret_array[1]
     @client = Octokit::Client.new(@cred)
     # TODO: use Oauth
 
@@ -67,7 +73,7 @@ class Git_Ruby
         puts "No Repo #{@main_repo}, creating new repo"
         #@client.create_repository(repo_name , :auto_init => true)
         @client.create_repository(@main_repo , :auto_init => true)
-        @repo_exists = false
+        @repo_exists = true
         sleep 3
       else
         #puts "repo #{repo_name} exists."
@@ -84,11 +90,11 @@ class Git_Ruby
 
     sleep 2 #leave some time between the GIT API requests    (not sure if required)
 
-    self.add_content(user_repo, xpo_filename, xpo_filename_plus_path)
+    self.add_content(user_repo, xpo_filename, xpo_filename_plus_path, customer, commit_msg)
   end
 
-  def add_content(user_repo, xpo_filename, xpo_filename_plus_path)
-    puts "Customer : #{@customer}"
+  def add_content(user_repo, xpo_filename, xpo_filename_plus_path, customer, commit_msg)
+    puts "Customer : #{customer}"
 
     # Use the API to add the new file and commit to the GitHb DB. This way we don't need a local git
     # See: http://developer.github.com/v3/git/
@@ -117,30 +123,48 @@ class Git_Ruby
         tree_sha = commit_obj[0].commit.tree.sha
         #puts "tree_sha: #{tree_sha}"
 
-        # Make sure we have the file
-        # TODO: at this point we assume that we only have 1 xpo in the repo - this need to be reviewed/expanded
+        # See if we have a node for the customer
         tree_obj = @client.tree(user_repo, tree_sha)
-        cur_file = @customer + "/" + xpo_filename
+        cur_file = customer + "/" + xpo_filename
 
         #puts tree_obj.inspect
+        @have_cust = false
         tree_obj.tree.each{|t|
-          if t.path == cur_file
-            @file_in_repo = true
+          puts "File: #{t.path}"
+          if t.path == customer
+            @have_cust = true
             #puts t.sha
-            @update_file_sha = t.sha
-            puts "file found"
-          else
-            @file_in_repo = false
-            puts "#{cur_file} not found in repo #{@main_repo}, adding..."
-            #puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
-            content_and_commit = @client.create_contents(user_repo, cur_file, "Adding content", xpo_filename_plus_path )
-          end
-
-          if @file_in_repo == true
-            puts "updating...."
-            content_and_commit = @client.update_contents(user_repo, xpo_filename, "Updating content", @update_file_sha, xpo_filename_plus_path)
+            @customer_node_sha = t.sha
+            puts "Customer #{customer} found"
+            break
           end
         } #tree_ob.each loop
+
+        if @have_cust
+          puts "Check under #{customer}"
+          # See if we have the file
+          tree_obj = @client.tree(user_repo, @customer_node_sha)
+          @have_file = false
+          tree_obj.tree.each{|t|
+            if t.path == xpo_filename
+              @update_file_sha = t.sha
+              puts "File found for #{customer} : #{t.path}"
+              @have_file = true
+              break
+            end
+          }
+        end
+      end
+
+      if @have_file == true
+        puts "updating...."
+        puts "user_repo: #{user_repo} cur_file: #{cur_file} commit_msg: #{commit_msg} sha: #{@update_file_sha} file: #{xpo_filename_plus_path}"
+        content_and_commit = @client.update_contents(user_repo, cur_file, commit_msg, @update_file_sha, :file => xpo_filename_plus_path)
+      else
+        puts "#{cur_file} not found in repo #{@main_repo}, adding..."
+        #puts "INFO: #{user_repo} #{xpo_filename} #{xpo_filename_plus_path}"
+        puts "Cur_file: #{cur_file}  xpo:  #{xpo_filename} xpo+p; #{xpo_filename_plus_path}"
+        content_and_commit = @client.create_contents(user_repo, cur_file, commit_msg,  :file => xpo_filename_plus_path)
       end
     else
       #No Repo
