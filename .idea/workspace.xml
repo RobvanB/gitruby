@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2cf59a8b-0634-49c8-9036-ee3d7e52d910" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/git_ruby.rb" afterPath="$PROJECT_DIR$/git_ruby.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="gitruby.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,6 +65,7 @@
         <option value="$PROJECT_DIR$/git_ruby_run.rb" />
         <option value="$PROJECT_DIR$/gitruby.xml" />
         <option value="$PROJECT_DIR$/git_ruby.rb" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -359,7 +360,11 @@
       <created>1381694987665</created>
       <updated>1381694987665</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Code cleanup">
+      <created>1381695414496</created>
+      <updated>1381695414496</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -483,11 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/ruby/1.9.1/xmlrpc/client.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="57" selection-start="2234" selection-end="2234" vertical-scroll-proportion="2.3907454" />
@@ -518,13 +518,6 @@
         <state line="78" column="0" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.3325062" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gitruby.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="23" selection-end="23" vertical-scroll-proportion="0.037220843">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git_ruby_run.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="32" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
@@ -535,6 +528,20 @@
     <entry file="file://$PROJECT_DIR$/getEmailAttach.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="88" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gitruby.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="123" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="12" selection-start="912" selection-end="912" vertical-scroll-proportion="0.8134328">
           <folding />
         </state>
       </provider>
