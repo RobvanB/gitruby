@@ -1,6 +1,7 @@
 class Git_Ruby
   require 'octokit'
   require 'nokogiri'
+  require 'fileutils'
 
   def initialize
     # Open the config file with the account info
@@ -8,13 +9,14 @@ class Git_Ruby
     doc = Nokogiri::XML(cfg)
     cfg.close
 
-    # Assign values from configvfile
+    # Assign values from configfile
     doc.xpath("//account").each { |acc|
       #puts acc.to_s
       @username  = acc.xpath("un")[0].content
       @password  = acc.xpath("pw")[0].content
       @xpodir    = acc.xpath("xpodir")[0].content
       @main_repo = acc.xpath("main_repo")[0].content #Single repo, subdir per customer
+      @arch_dir  = acc.xpath("arch_dir")[0].content
     }
 
     @cred      = { :login => @username, :password => @password }
@@ -146,6 +148,16 @@ class Git_Ruby
         puts "#{cur_file} not found in repo #{@main_repo}, adding..."
         content_and_commit = @client.create_contents(user_repo, cur_file, commit_msg,  :file => xpo_filename_plus_path)
       end
+      # Move files
+      fromfile   = @xpodir + "/" + xpo_filename
+      tofile     = @arch_dir + "/" + xpo_filename
+      puts "#{fromfile} to #{tofile}"
+      FileUtils.mv(fromfile, tofile)
+      filename   = xpo_filename.gsub('.xpo', "") #Remove .xpo
+      fromfile   = @xpodir + "/" + filename + ".commit"
+      tofile     = @arch_dir + "/" + filename + ".commit"
+      puts "#{fromfile} to #{tofile}"
+      FileUtils.mv(fromfile, tofile)
     else
       #No Repo
       puts "No Repo, exiting."

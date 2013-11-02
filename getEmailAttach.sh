@@ -17,11 +17,20 @@ output_dir=/xpotmp
 
 getmail
 
-for f in `ls ${email_dir}`
+for f in `ls ${email_dir} 2>/dev/null`
 do
  munpack -C ${email_dir} ${f}
  mv ${email_dir}/${f} ${archive_dir}
- mv ${email_dir}/* ${output_dir}
+done
+
+for xf in `ls ${email_dir}/*.xpo 2>/dev/null`
+do
+ mv ${email_dir}/*.xpo ${output_dir}
+done
+
+for cf in `ls ${email_dir}/*.commit 2>/dev/null`
+do
+ mv ${email_dir}/*.commit ${output_dir}
 done
 
 # If an attached filename has "(1)" in it (which happens with XPOs), 
@@ -30,7 +39,7 @@ done
 # We need to get rid of that:
 cd ${output_dir}
 
-for f in `ls`
+for f in `ls *XX?X* 2>/dev/null`
 do
   new_name=`ls ${f} | awk -F'XX.+X' '{print $1$2}' `
   mv ${f} ${new_name}
